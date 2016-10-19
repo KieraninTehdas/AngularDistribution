@@ -26,7 +26,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
     //G4ParticleDefinition* photon = particleTable->FindParticle(particleName="gamma");
     fProton = particleTable->FindParticle(particleName="proton");
     
-    G4double kineticEnergy = 50.0*MeV;
+    G4double kineticEnergy = 100.0*MeV;
     
     // default particle kinematics
     fParticleGun->SetParticleDefinition(fProton);
@@ -64,6 +64,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 	fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(sinTheta*cos(phi),
 								sinTheta*sin(phi),
 							    cosTheta));
-
+	
+	
+	//fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(1,0,0));
 	fParticleGun->GeneratePrimaryVertex(anEvent);
 }

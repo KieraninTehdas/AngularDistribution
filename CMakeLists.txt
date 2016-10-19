@@ -46,6 +46,7 @@ set(_SCRIPTS
 	init_vis.mac
 	gui.mac
 	icons.mac
+	run1000.mac
   )
 
 foreach(_script ${_SCRIPTS})
