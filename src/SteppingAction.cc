@@ -85,15 +85,23 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		G4String name2 = volume2->GetName();
 
 		//If step ends on a boundary, get position and calculate theta and phi.
+		/*
 		G4ThreeVector endPosition = postStepPoint->GetPosition();
 		G4double x = endPosition.x();
 		G4double y = endPosition.y();
 		G4double z = endPosition.z();
+		*/
+
+		//Get momentum direction to calculate theta and phi
+		G4ThreeVector endMomentumDirection = postStepPoint->GetMomentumDirection();
+		G4double x = endMomentumDirection.x();
+		G4double y = endMomentumDirection.y();
+		G4double z = endMomentumDirection.z();
 
 		G4double r = sqrt(pow(x,2) + pow(y,2) + pow(z,2));
 
-		G4double theta = acos(y/r) * (180/M_PI);
-		G4double phi = atan(x/z) * (180/M_PI);
+		G4double theta = acos(z/r) * (180/M_PI);
+		G4double phi = atan(y/x) * (180/M_PI);
 
 		G4Track* track = step->GetTrack();
 		G4double kineticEnergy = track->GetKineticEnergy();

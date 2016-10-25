@@ -26,7 +26,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
     //G4ParticleDefinition* photon = particleTable->FindParticle(particleName="gamma");
     fProton = particleTable->FindParticle(particleName="proton");
     
-    G4double kineticEnergy = 100.0*MeV;
+    G4double kineticEnergy = 50.0*MeV;
     
     // default particle kinematics
     fParticleGun->SetParticleDefinition(fProton);
