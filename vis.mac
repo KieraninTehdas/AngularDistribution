@@ -33,6 +33,7 @@
 # Specify view angle:
 #/vis/viewer/set/viewpointVector -1 0 0
 #/vis/viewer/set/lightsVector -1 0 0
+#/vis/scene/add/axes 0 0 0
 #
 
 #
