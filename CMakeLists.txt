@@ -1,6 +1,6 @@
 #----------------------------------------------------------------------------
 # Setup the project
-cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 project(NoDetector)
 
 #----------------------------------------------------------------------------
@@ -47,6 +47,7 @@ set(_SCRIPTS
 	gui.mac
 	icons.mac
 	run1000.mac
+	run1million.mac
   )
 
 foreach(_script ${_SCRIPTS})
