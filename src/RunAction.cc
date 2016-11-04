@@ -21,8 +21,10 @@ RunAction::RunAction()
 
 	analysisManager->CreateNtuple("Test", "AngularDist");
 	analysisManager->CreateNtupleDColumn("kineticEnergy");
-	analysisManager->CreateNtupleDColumn("Theta");
-	analysisManager->CreateNtupleDColumn("Phi");
+	analysisManager->CreateNtupleDColumn("ThetaScat");
+	analysisManager->CreateNtupleDColumn("PhiScat");
+	analysisManager->CreateNtupleDColumn("ThetaInit");
+	analysisManager->CreateNtupleDColumn("PhiInit");
 	analysisManager->FinishNtuple();
 
 	analysisManager->CreateH1("0", "Energy Angular Distribution", 180, 0.0, 50.0*MeV);
