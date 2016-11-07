@@ -76,7 +76,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 	if (postStepPoint->GetStepStatus() == fGeomBoundary)
 	{
 
-		G4cout << "Step ends on boundary."  << G4endl;
+		//G4cout << "Step ends on boundary."  << G4endl;
 
 		G4TouchableHandle touch1 = postStepPoint->GetTouchableHandle();
 		G4VPhysicalVolume* volume = touch1->GetVolume();
@@ -129,6 +129,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		G4double theta0 = acos(z0/r0);
 		G4double phi0 = atan(y0/x0);
 
+/*
 		G4cout << "Start volume name: " << name2 
 		 << "End Volume name: " << name << G4endl;
 
@@ -145,6 +146,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		 analysisManager->AddNtupleRow();
 
 		 //analysisManager->FillH1(0, kineticEnergy);
+	
+*/
 		 analysisManager->FillH2(0, theta0, energyLoss);
 
 		 //print the data to the text file
