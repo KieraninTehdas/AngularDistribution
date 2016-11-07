@@ -110,6 +110,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		G4Track* track = step->GetTrack();
 		G4double kineticEnergy = track->GetKineticEnergy();
 
+		//G4cout << track->GetVertexKineticEnergy() << G4endl;
+
+
+		G4double energyLoss = track->GetVertexKineticEnergy() - kineticEnergy;
+
+		//G4cout << energyLoss << G4endl;
+
 		//Get primary vertex momentum direction to calculate initial theta and phi
 		G4ThreeVector initialMomentumDirection = track->GetVertexMomentumDirection();
 		G4double x0 = initialMomentumDirection.x();
@@ -117,8 +124,10 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		G4double z0 = initialMomentumDirection.z();
 
 		G4double r0 = sqrt(pow(x0,2) + pow(y0,2) + pow(z0,2));
-		G4double theta0 = acos(z0/r0)*(180/M_PI);
-		G4double phi0 = atan(y0/x0) * (180/M_PI);
+		//G4double theta0 = acos(z0/r0)*(180/M_PI);
+		//G4double phi0 = atan(y0/x0) * (180/M_PI);
+		G4double theta0 = acos(z0/r0);
+		G4double phi0 = atan(y0/x0);
 
 		G4cout << "Start volume name: " << name2 
 		 << "End Volume name: " << name << G4endl;
@@ -135,8 +144,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		 analysisManager->FillNtupleDColumn(4, phi0);
 		 analysisManager->AddNtupleRow();
 
-		 analysisManager->FillH1(0, kineticEnergy);
-		 //analysisManager->FillH1(0, theta);
+		 //analysisManager->FillH1(0, kineticEnergy);
+		 analysisManager->FillH2(0, theta0, energyLoss);
 
 		 //print the data to the text file
 		 //outFile << theta << " " << phi << " " << kineticEnergy << G4endl;
