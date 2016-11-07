@@ -18,7 +18,7 @@ RunAction::RunAction()
 
 	//Create an analysis manager
 	G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-
+/*
 	analysisManager->CreateNtuple("Test", "AngularDist");
 	analysisManager->CreateNtupleDColumn("kineticEnergy");
 	analysisManager->CreateNtupleDColumn("ThetaScat");
@@ -26,7 +26,7 @@ RunAction::RunAction()
 	analysisManager->CreateNtupleDColumn("ThetaInit");
 	analysisManager->CreateNtupleDColumn("PhiInit");
 	analysisManager->FinishNtuple();
-
+*/
 	//analysisManager->CreateH1("0", "Energy Angular Distribution", 180, 0.0, 50.0*MeV);
 	
 	analysisManager->CreateH2("AngularDist", "Energy Loss Theta Dependence", 
