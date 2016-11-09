@@ -138,6 +138,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		 G4cout << "Theta = " << theta << " Phi = " << phi << G4endl;
 		 G4cout << "Init Theta = " << theta0 << "Init Phi = " << phi0 << G4endl;
 
+*/
+
 		 analysisManager->FillNtupleDColumn(0, kineticEnergy);
 		 analysisManager->FillNtupleDColumn(1, theta);
 		 analysisManager->FillNtupleDColumn(2, phi);
@@ -147,7 +149,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 
 		 //analysisManager->FillH1(0, kineticEnergy);
 	
-*/
 		 analysisManager->FillH2(0, theta0, energyLoss);
 
 		 //print the data to the text file
