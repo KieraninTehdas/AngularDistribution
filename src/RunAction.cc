@@ -21,18 +21,20 @@ RunAction::RunAction()
 
 
 	analysisManager->CreateNtuple("Test", "AngularDist");
-	analysisManager->CreateNtupleDColumn("kineticEnergy");
+	analysisManager->CreateNtupleDColumn("energyLoss");
+/*
 	analysisManager->CreateNtupleDColumn("ThetaScat");
 	analysisManager->CreateNtupleDColumn("PhiScat");
 	analysisManager->CreateNtupleDColumn("ThetaInit");
 	analysisManager->CreateNtupleDColumn("PhiInit");
+	*/
 	analysisManager->FinishNtuple();
 
 	//analysisManager->CreateH1("0", "Energy Angular Distribution", 180, 0.0, 50.0*MeV);
 
 	
-	analysisManager->CreateH2("AngularDist", "Energy Loss Theta Dependence", 
-		100.0, 0.0, 1.6*rad, 1000.0, 0.0, 100.0*MeV);
+	analysisManager->CreateH2("EnergyDepend", "Energy Loss Dependence on Vertex Energy", 
+		200.0, 0.0, 200*MeV, 1000.0, 0.0, 100.0*MeV);
 
 }
 

@@ -95,37 +95,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 							worldLogical,
 							false,
 							0);
-//-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
 
-//Crystal ball detector shell
 
-	//Dimensions of shell
-
-	G4double innerSphereRadius = 25.3*cm;
-	G4double outerSphereRadius = 30.01*cm;
-	G4double startingPhiSphere = 0.0*deg;
-	G4double spanningPhiSphere = 360.0*deg;
-	G4double startingThetaSphere = 0.0*deg;
-	G4double spanningThetaSphere = 180.0*deg;
-
-	G4VSolid* sphereSolid = new G4Sphere("SphereSolid", 
-											innerSphereRadius, 
-											outerSphereRadius,
-											startingPhiSphere,
-											spanningPhiSphere,
-											startingThetaSphere,
-											spanningThetaSphere);
-
-	G4LogicalVolume* sphereLog = new G4LogicalVolume(sphereSolid, air, "SphereLogical");
-	
-	G4VPhysicalVolume* spherePhysical 
-								= new G4PVPlacement(0,
-								G4ThreeVector(pos_x,pos_y,pos_z),
-								sphereLog,
-								"Sphere",
-								worldLogical,
-								false,
-								0);
 
 	//Return the physical world
 	return worldPhysical;

@@ -44,6 +44,7 @@ int main(int argc,char** argv)
     G4RunManager* runManager = new G4RunManager;
 #endif
 
+    G4Random::setTheEngine(new CLHEP::HepJamesRandom);
 //-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 // Set mandatory initialization classes
