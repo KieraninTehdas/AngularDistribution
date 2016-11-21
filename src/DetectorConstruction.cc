@@ -24,6 +24,8 @@ DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction()
 { 
 DefineMaterials();
+fPID = NULL;
+fMWPC = NULL;
 }
 
 //--------------------------------------------------
@@ -139,6 +141,15 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	//Create PID
 	fPID=new A2DetPID();
 	fPID->Construct2(fWorldLogic,fPIDZ);
+
+
+	//Create MWPC
+	fMWPC = new A2DetMWPC();
+	fMWPC->UseAnodes(true);
+	fMWPC->Construct(fWorldLogic);
+
+
+
 	//Return the physical world
 	return worldPhysical;
 

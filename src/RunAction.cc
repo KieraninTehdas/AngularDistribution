@@ -32,7 +32,7 @@ RunAction::RunAction()
 
 	
 	analysisManager->CreateH2("AngularDist", "Energy Loss Theta Dependence", 
-		100.0, 0.0, 1.6*rad, 1000.0, 0.0, 100.0*MeV);
+		75.0, 0.0, 1.6*rad, 1000.0, 0.0, 100.0*MeV);
 
 }
 

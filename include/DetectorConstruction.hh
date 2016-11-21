@@ -8,6 +8,7 @@
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
 #include "A2DetPID.hh"
+#include "A2DetMWPC.hh"
 #include "A2Detector.hh"
 #include "G4NistManager.hh"
 
@@ -32,6 +33,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction
   	G4LogicalVolume*   fWorldLogic;
   	A2DetPID* fPID;   //PID detector
     G4double fPIDZ;
+    A2DetMWPC* fMWPC; //wire chamber
 };
 
 #endif
