@@ -7,9 +7,13 @@
 
 #include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
+#include "A2DetPID.hh"
+#include "A2Detector.hh"
+#include "G4NistManager.hh"
 
 class G4VPhysicalVolume;
 class G4LogicalVolume;
+class G4Material;
 
 class DetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -17,8 +21,17 @@ class DetectorConstruction : public G4VUserDetectorConstruction
     DetectorConstruction();
     virtual ~DetectorConstruction();
 
+  public:
+
     virtual G4VPhysicalVolume* Construct();
-    
+
+    void DefineMaterials();
+
+  private:
+
+  	G4LogicalVolume*   fWorldLogic;
+  	A2DetPID* fPID;   //PID detector
+    G4double fPIDZ;
 };
 
 #endif

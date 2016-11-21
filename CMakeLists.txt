@@ -47,6 +47,7 @@ set(_SCRIPTS
 	gui.mac
 	icons.mac
 	run1000.mac
+	run10000.mac
 	run100000.mac
 	run1million.mac
   )
