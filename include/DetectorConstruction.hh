@@ -10,6 +10,7 @@
 #include "A2DetPID.hh"
 #include "A2DetMWPC.hh"
 #include "A2Detector.hh"
+#include "A2Target.hh"
 #include "G4NistManager.hh"
 
 class G4VPhysicalVolume;
@@ -34,6 +35,9 @@ class DetectorConstruction : public G4VUserDetectorConstruction
   	A2DetPID* fPID;   //PID detector
     G4double fPIDZ;
     A2DetMWPC* fMWPC; //wire chamber
+
+    A2Target* fTarget;
+  	G4Material* fTargetMaterial;
 };
 
 #endif

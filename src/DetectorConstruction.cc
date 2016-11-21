@@ -18,6 +18,8 @@ Builds world volume and lead target disk.
 #include "G4SystemOfUnits.hh"
 #include "G4Material.hh"
 
+#include "A2SolidTarget.hh"
+
 //--------------------------------------------------
 
 DetectorConstruction::DetectorConstruction()
@@ -45,6 +47,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	G4Material* air = nist->FindOrBuildMaterial("G4_AIR");
 	G4Material* lead = nist->FindOrBuildMaterial("G4_Pb");
 
+	fTargetMaterial = lead;
 	//Switch on volume overlap checking
 	G4bool checkOverlaps = true;
 
@@ -85,16 +88,16 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     G4double spanningAngle = 360.0*deg;
 
     //Construct target disk
-    G4Tubs* targetDisc = new G4Tubs("Target", innerRadius, outerRadius, hz, startAngle, spanningAngle);               
+//    G4Tubs* targetDisc = new G4Tubs("Target", innerRadius, outerRadius, hz, startAngle, spanningAngle);               
     
-    G4LogicalVolume* targetLog = new G4LogicalVolume(targetDisc, lead, "Target");
+//    G4LogicalVolume* targetLog = new G4LogicalVolume(targetDisc, lead, "Target");
     
     //Target disk positioned at global origin
     G4double pos_x =  0.0*meter;
 	G4double pos_y =  0.0*meter;
 	G4double pos_z =  0.0*meter;
 
-	
+/*	
 	G4VPhysicalVolume* targetPhysical
 		= new G4PVPlacement(0,
 							G4ThreeVector(pos_x, pos_y, pos_z),
@@ -103,7 +106,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 							worldLogical,
 							false,
 							0);
-							
+	*/						
 //-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -
 
 //Crystal ball detector shell
@@ -148,7 +151,9 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	fMWPC->UseAnodes(true);
 	fMWPC->Construct(fWorldLogic);
 
-
+	fTarget=static_cast<A2Target*>(new A2SolidTarget());
+	fTarget->SetMaterial(fTargetMaterial);
+	fTarget->Construct(fWorldLogic);
 
 	//Return the physical world
 	return worldPhysical;
