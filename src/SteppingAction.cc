@@ -150,15 +150,16 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		
 
 		 analysisManager->FillNtupleDColumn(0, kineticEnergy);
-		 analysisManager->FillNtupleDColumn(1, theta);
-		 analysisManager->FillNtupleDColumn(2, phi);
-		 analysisManager->FillNtupleDColumn(3, theta0);
-		 analysisManager->FillNtupleDColumn(4, phi0);
+		 analysisManager->FillNtupleDColumn(1, energyLoss);
+		// analysisManager->FillNtupleDColumn(1, theta);
+		// analysisManager->FillNtupleDColumn(2, phi);
+		 analysisManager->FillNtupleDColumn(2, theta0);
+		 analysisManager->FillNtupleDColumn(3, phi0);
 		 analysisManager->AddNtupleRow();
 
 		 //analysisManager->FillH1(0, kineticEnergy);
 	
-		 analysisManager->FillH2(0, theta0, energyLoss);
+		// analysisManager->FillH2(0, theta0, energyLoss);
 
 		 //print the data to the text file
 		 //outFile << theta << " " << phi << " " << kineticEnergy << G4endl;

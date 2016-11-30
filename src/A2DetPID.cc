@@ -186,9 +186,14 @@ void A2DetPID::MakeSingleDetector(){
 void A2DetPID::MakePhotomultipliers(){
 
   //note sasha uses fglass with an inner radius of 0.24cm
-  fpmt_z=2.315*cm;//half lenght
-  G4double pmt_rin=0.44*cm;
-  G4double pmt_rout=0.48*cm;
+  //fpmt_z=2.315*cm;//half lenght
+	fpmt_z = 2.315*cm;
+  //Original dimensions of PMT
+ // G4double pmt_rin=0.44*cm;
+ // G4double pmt_rout=0.48*cm;
+  //Kieran trying to fix overlaps
+  G4double pmt_rin = 0.44*cm;
+  G4double pmt_rout = 0.48*cm;
   fTPMT=new G4Tubs("TPMT",pmt_rin,pmt_rout,fpmt_z,0*deg,360*deg);
   fTPMTLogic=new G4LogicalVolume(fTPMT,fNistManager->FindOrBuildMaterial("A2_FGLASS"),"TPMT");
 
@@ -201,6 +206,7 @@ void A2DetPID::MakePhotomultipliers(){
   fmume_z=4.615*cm;
   G4double mume_rin=0.548*cm;//NEED TO CHECK Should be 0.5?
   G4double mume_rout=0.55*cm;
+  //Kieran trying to fix overlaps.
   fMUME=new G4Tubs("MUME",mume_rin,mume_rout,fmume_z,0*deg,360*deg);
   fMUMELogic=new G4LogicalVolume(fMUME,fNistManager->FindOrBuildMaterial("A2_MUMETAL"),"BASE");
 
@@ -232,7 +238,7 @@ void A2DetPID::MakeLightGuide(){
   //tub (LGTU)
   G4double lg4_z=0.1*cm;
   // G4double lg4_r=lg3_xbot;
-  G4double lg4_r=9.7/2;//change dglazier 26/01/09, too big before!
+  G4double lg4_r=9.7/2.0 *mm;//change dglazier 26/01/09, too big before!
 
   flg_z=2*lg3_z+lg4_z+flg12_z; //distance from z=0 (cenre of LGTU) to tip
 

@@ -216,6 +216,9 @@ G4VPhysicalVolume* A2DetMWPC::Construct(G4LogicalVolume* MotherLogical){
   //G4double moth_rmax = fchso2_rmax+0.1*mm;
   G4double moth_rmin = fchsi1_rmin-0.1*mm;//werthmeuller correst for overlap
   G4double moth_rmax = fchso2_rmax+0.1*mm;//werthmeuller correst for overlap
+  	//G4double moth_rmin = fchsi1_rmin+0.32*mm; //Porter correction for overlap
+  	//G4double moth_rmax = fchso2_rmax-0.32*mm; //Porter correction for overlap
+
   // G4Tubs *MWPCMother = new G4Tubs("MWPC", moth_rmin, moth_rmax, fdz, 0*deg, 360*deg); dglazier make sure mv is large enough to incude supports
   G4Tubs *MWPCMother = new G4Tubs("MWPC", moth_rmin, moth_rmax, fdz+1*cm, 0*deg, 360*deg);
 
