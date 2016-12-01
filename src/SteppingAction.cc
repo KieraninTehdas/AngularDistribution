@@ -16,6 +16,7 @@
 #include "G4ThreeVector.hh"
 #include "G4Track.hh"
 #include "G4UnitsTable.hh"
+#include "G4Region.hh"
 
 #include <fstream>
   using namespace std;
@@ -73,8 +74,12 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 	}
 	*/
 
+	
+
 	if (postStepPoint->GetStepStatus() == fGeomBoundary)
 	{
+
+		
 
 		//G4cout << "Step ends on boundary."  << G4endl;
 
@@ -86,13 +91,12 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		G4VPhysicalVolume* volume2 = touch2->GetVolume();
 		G4String name2 = volume2->GetName();
 
-		//If step ends on a boundary, get position and calculate theta and phi.
-		/*
-		G4ThreeVector endPosition = postStepPoint->GetPosition();
-		G4double x = endPosition.x();
-		G4double y = endPosition.y();
-		G4double z = endPosition.z();
-		*/
+		//Check if step ends on detector boundary
+
+		if (name == "Sphere")
+		{
+		
+	
 
 		//Get momentum direction to calculate theta and phi
 		G4ThreeVector endMomentumDirection = postStepPoint->GetMomentumDirection();
@@ -130,29 +134,36 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 		G4double phi0 = atan(y0/x0);
 
 /*
+
 		G4cout << "Start volume name: " << name2 
-		 << "End Volume name: " << name << G4endl;
+		 << " End Volume name: " << name << G4endl;
+
+
 
 		 G4cout << "Kinetic Energy: " << G4BestUnit(kineticEnergy, "Energy") << G4endl;
 		 //G4cout << x << " " << y << " " << z << G4endl;
-		 G4cout << "Theta = " << theta << " Phi = " << phi << G4endl;
-		 G4cout << "Init Theta = " << theta0 << "Init Phi = " << phi0 << G4endl;
+		 //G4cout << "Theta = " << theta << " Phi = " << phi << G4endl;
+		 //G4cout << "Init Theta = " << theta0 << "Init Phi = " << phi0 << G4endl;
 
 */
 
+		
+
 		 analysisManager->FillNtupleDColumn(0, kineticEnergy);
-		 analysisManager->FillNtupleDColumn(1, theta);
-		 analysisManager->FillNtupleDColumn(2, phi);
-		 analysisManager->FillNtupleDColumn(3, theta0);
-		 analysisManager->FillNtupleDColumn(4, phi0);
+		 analysisManager->FillNtupleDColumn(1, energyLoss);
+		// analysisManager->FillNtupleDColumn(1, theta);
+		// analysisManager->FillNtupleDColumn(2, phi);
+		 analysisManager->FillNtupleDColumn(2, theta0);
+		 analysisManager->FillNtupleDColumn(3, phi0);
 		 analysisManager->AddNtupleRow();
 
 		 //analysisManager->FillH1(0, kineticEnergy);
 	
-		 analysisManager->FillH2(0, theta0, energyLoss);
+		// analysisManager->FillH2(0, theta0, energyLoss);
 
 		 //print the data to the text file
 		 //outFile << theta << " " << phi << " " << kineticEnergy << G4endl;
+		}
 
 	}
 

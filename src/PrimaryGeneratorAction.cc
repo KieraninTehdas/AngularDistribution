@@ -28,9 +28,12 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
     
     G4double kineticEnergy = 100.0*MeV;
     
+    //G4cout << randKineticEnergy << G4endl;
+    
     // default particle kinematics
     fParticleGun->SetParticleDefinition(fProton);
 	fParticleGun->SetParticleEnergy(kineticEnergy);
+
     
 }
 
@@ -53,11 +56,14 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 	G4double source_y = 0.0*m;
 	G4double source_z = 0.0*m;
   
+	//G4double randKineticEnergy = CLHEP::RandFlat::shoot(50.0,200.0);
+	//fParticleGun->SetParticleEnergy(randKineticEnergy);
+
 	fParticleGun->SetParticlePosition(G4ThreeVector(source_x,source_y,source_z));
 
 //create an isotropic source
 
-	G4double cosTheta = 0.0 + 1.0*G4UniformRand();
+	G4double cosTheta = -1.0 + 2.0*G4UniformRand();
 	G4double Theta = acos(cosTheta);
 	G4double phi = CLHEP::twopi*G4UniformRand();
 	G4double sinTheta = sqrt(1.0 - cosTheta*cosTheta);
