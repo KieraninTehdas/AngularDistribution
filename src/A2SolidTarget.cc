@@ -34,10 +34,22 @@ G4VPhysicalVolume* A2SolidTarget::Construct(G4LogicalVolume *MotherLogic){
   else if(fMaterial==G4NistManager::Instance()->FindOrBuildMaterial("G4_Pb"))trgt_length=0.05*cm; 
   else {G4cerr<<"A2SolidTarget::Construct() Solid target length not defined!!"<<G4endl;exit(1);}
   */
+
+  //Lead Target
+
+/*
   fMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_Pb");
   G4double trgt_length;
   trgt_length=0.05*cm;
   fLength=trgt_length;
+*/
+
+  //Carbon target
+
+  fMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_C");
+  G4double trgt_length = 1.5*cm;
+  fLength = trgt_length;
+
   ///////////////////////////
   //Construct the volumes
   /////////////////////////
