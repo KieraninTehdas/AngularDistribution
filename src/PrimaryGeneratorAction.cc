@@ -65,7 +65,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
 	G4double cosTheta = -1.0 + 2.0*G4UniformRand();
 	G4double Theta = acos(cosTheta);
-	G4double phi = CLHEP::twopi*G4UniformRand();
+	//G4double phi = CLHEP::twopi*G4UniformRand();
+	G4double phi = 0.53 * G4UniformRand();
 	G4double sinTheta = sqrt(1.0 - cosTheta*cosTheta);
 
 	fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(sinTheta*cos(phi),
