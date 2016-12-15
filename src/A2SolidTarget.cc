@@ -46,8 +46,16 @@ G4VPhysicalVolume* A2SolidTarget::Construct(G4LogicalVolume *MotherLogic){
 
   //Carbon target
 
+/*
   fMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_C");
   G4double trgt_length = 1.5*cm;
+  fLength = trgt_length;
+  */
+
+  //Calcium target
+
+  fMaterial = G4NistManager::Instance()->FindOrBuildMaterial("G4_Ca");
+  G4double trgt_length = 1.0*cm;
   fLength = trgt_length;
 
   ///////////////////////////
