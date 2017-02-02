@@ -46,6 +46,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 	//Build required materials from database
 	G4Material* air = nist->FindOrBuildMaterial("G4_AIR");
 	G4Material* lead = nist->FindOrBuildMaterial("G4_Pb");
+	G4Material* steel = nist->FindOrBuildMaterial("G4_Fe");
 
 	fTargetMaterial = lead;
 	//Switch on volume overlap checking
@@ -135,6 +136,36 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 								G4ThreeVector(pos_x,pos_y,pos_z),
 								sphereLog,
 								"Sphere",
+								worldLogical,
+								false,
+								0);
+
+
+// Inner steel "can"
+
+  G4double inch = 2.54*cm;								
+  G4double cnin_rin=9.8*inch;
+  G4double cnin_rout=cnin_rin+(1.0/16)*inch;
+  //G4double cnin_thlow=asin(tunl_rout/cnin_rin)*rad;
+  //G4double cnin_thdelta=180*deg-2*cnin_thlow;
+  //G4double cnin_phlow=0*deg;
+  //G4double cnin_phdelta=180*deg;
+
+  G4VSolid* steelSolid = new G4Sphere("SteelSolid", 
+  										cnin_rin, 
+  										cnin_rout,
+  										startingPhiSphere,
+										spanningPhiSphere,
+										startingThetaSphere,
+										spanningThetaSphere);
+
+  G4LogicalVolume* steelLog = new G4LogicalVolume(steelSolid, steel, "SteelLogical");
+
+  G4VPhysicalVolume* steelPhysical 
+								= new G4PVPlacement(0,
+								G4ThreeVector(pos_x,pos_y,pos_z),
+								steelLog,
+								"SteelSphere",
 								worldLogical,
 								false,
 								0);

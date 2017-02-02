@@ -56,7 +56,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 	G4double source_y = 0.0*m;
 	G4double source_z = 0.0*m;
   
-	//G4double randKineticEnergy = CLHEP::RandFlat::shoot(50.0,200.0);
+	//G4double randKineticEnergy = CLHEP::RandFlat::shoot(50.0,400.0);
 	//fParticleGun->SetParticleEnergy(randKineticEnergy);
 
 	fParticleGun->SetParticlePosition(G4ThreeVector(source_x,source_y,source_z));
